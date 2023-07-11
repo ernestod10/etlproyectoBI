@@ -1,14 +1,14 @@
 import os
 import psycopg2
 
-# Get source database connection parameters from environment variables
+# Relacional
 source_dbname = os.environ.get('SOURCE_DB_NAME')
 source_user = os.environ.get('SOURCE_DB_USER')
 source_password = os.environ.get('SOURCE_DB_PASSWORD')
 source_host = os.environ.get('SOURCE_DB_HOST')
 source_port = os.environ.get('SOURCE_DB_PORT')
 
-# Get destination database connection parameters from environment variables
+# OLAP
 dest_dbname = os.environ.get('DESTINATION_DB_NAME')
 dest_user = os.environ.get('DESTINATION_DB_USER')
 dest_password = os.environ.get('DESTINATION_DB_PASSWORD')

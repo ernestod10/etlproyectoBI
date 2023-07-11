@@ -32,18 +32,18 @@ def execute_dest_query(query, data):
     dest_cur.executemany(query, data)
     dest_conn.commit()
 
-# Extraccion
+# ejemplo Extraccion
 source_query = "SELECT * FROM tabla1;"
 results = execute_source_query(source_query)
 
-# Destino
+#ejemplo config Destino
 dest_table = 'tabla_hechos'
 dest_query = f"INSERT INTO {dest_table} (column1, column2, column3) VALUES (%s, %s, %s);"
 
-# Transformacion
+#ejemplo Transformacion
 data = [(row[0], row[1], row[2]) for row in results]
 
-# Inserts
+#ejemplo Inserts
 execute_dest_query(dest_query, data)
 
 source_cur.close()

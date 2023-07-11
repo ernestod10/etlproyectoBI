@@ -120,13 +120,19 @@ ocupa_results = execute_source_query(query_ocupa)
 
 #ejemplo config Destino
 dest_table = 'tabla_hechos'
-dest_query = f"INSERT INTO {dest_table} (column1, column2, column3) VALUES (%s, %s, %s);"
+query_hechos = "INSERT INTO {dest_table} (column1, column2, column3) VALUES (%s, %s, %s);"
+data_hechos = [(row[0], row[1], row[2]) for row in results]
 
-#ejemplo Transformacion
-data = [(row[0], row[1], row[2]) for row in results]
+
+dest_table = 'Dimension_lugar'
+query_lugar = "INSERT INTO {dest_table} (column1, column2, column3) VALUES (%s, %s, %s);"
+data_lugar = [(row[0], row[1], row[2]) for row in results]
+
+
+
 
 #ejemplo Inserts
-execute_dest_query(dest_query, data)
+execute_dest_query(query_hechos, data_hechos)
 
 source_cur.close()
 source_conn.close()

@@ -1,19 +1,20 @@
+import os
+from dotenv import load_dotenv
 import psycopg2
 
-# Relacional
-source_dbname = 'Hospital_relacional'
-source_user = 'postgres'
-source_password = '1234'
-source_host = 'localhost'
-source_port = '5432'
+# Get source database connection parameters from environment variables
+source_dbname = os.environ.get('SOURCE_DB_NAME')
+source_user = os.environ.get('SOURCE_DB_USER')
+source_password = os.environ.get('SOURCE_DB_PASSWORD')
+source_host = os.environ.get('SOURCE_DB_HOST')
+source_port = os.environ.get('SOURCE_DB_PORT')
 
-# Warehouse
-dest_dbname = 'Hospital_warehouse'
-dest_user = 'postgres'
-dest_password = '1234'
-dest_host = 'localhost'
-dest_port = '5432'
-
+# Get destination database connection parameters from environment variables
+dest_dbname = os.environ.get('DESTINATION_DB_NAME')
+dest_user = os.environ.get('DESTINATION_DB_USER')
+dest_password = os.environ.get('DESTINATION_DB_PASSWORD')
+dest_host = os.environ.get('DESTINATION_DB_HOST')
+dest_port = os.environ.get('DESTINATION_DB_PORT')
 
 source_conn = psycopg2.connect(dbname=source_dbname, user=source_user, password=source_password, host=source_host, port=source_port)
 source_cur = source_conn.cursor()

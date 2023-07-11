@@ -1,5 +1,4 @@
 import os
-from dotenv import load_dotenv
 import psycopg2
 
 # Get source database connection parameters from environment variables

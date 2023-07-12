@@ -324,3 +324,19 @@ create table if not exists fact_tratamiento
 
 )
 
+
+##Trigger anos_exper
+CREATE OR REPLACE FUNCTION calculate_anos_exper()
+    RETURNS TRIGGER AS $$
+BEGIN
+    NEW.anos_exper := EXTRACT(YEAR FROM current_date) - EXTRACT(YEAR FROM NEW.fecha_contratacion);
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER trg_calculate_anos_exper
+    AFTER INSERT ON dim_medico
+    FOR EACH ROW
+    EXECUTE FUNCTION calculate_anos_exper();
+
+

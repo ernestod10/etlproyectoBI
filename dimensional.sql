@@ -120,7 +120,7 @@ CREATE TABLE dim_personal_sanit
     pasillo integer,
     id_especialidad integer,
     descripcion_especialidad text,
-    PRIMARY KEY (dim_dim_personal_sanit)
+    PRIMARY KEY (sk_dim_personal_sanit)
 );
 
 
@@ -252,7 +252,7 @@ create table if not exists fact_diagnostico
     CONSTRAINT fk_dim_paciente FOREIGN KEY (sk_dim_paciente) references dim_paciente (sk_dim_paciente),
     CONSTRAINT fk_dim_diagnostico FOREIGN KEY (sk_dim_diagnostico) references dim_diagnostico (sk_dim_diagnostico),
     CONSTRAINT fk_dim_fecha_elaboracion FOREIGN KEY (sk_dim_fecha_elaboracion) references dim_tiempo (sk_dim_tiempo)
-)
+);
 
 create table if not exists fact_intervencion
 (
@@ -277,7 +277,7 @@ create table if not exists fact_intervencion
     CONSTRAINT fk_dim_personal_sanit_secundario FOREIGN KEY (sk_dim_personal_sanit_secundario) references dim_personal_sanit (sk_dim_personal_sanit),
     CONSTRAINT fk_dim_fecha_practica FOREIGN KEY (sk_dim_fecha_practica) references dim_tiempo (sk_dim_tiempo),
     CONSTRAINT fk_dim_riesgo FOREIGN KEY (sk_dim_riesgo) references dim_riesgo (sk_dim_riesgo)
-)
+);
 
 create table if not exists fact_tratamiento
 (
@@ -291,7 +291,7 @@ create table if not exists fact_tratamiento
 
     cant_dias integer,
     num_ingreso integer,
-    
+
     CONSTRAINT fk_dim_medicamento FOREIGN KEY (sk_dim_medicamento) references dim_medicamento (sk_dim_medicamento),
     CONSTRAINT fk_dim_tratamiento FOREIGN KEY (sk_dim_tratamiento) references dim_tratamiento (sk_dim_tratamiento),
     CONSTRAINT fk_dim_fecha_inicio FOREIGN KEY (sk_dim_fecha_inicio) references dim_tiempo (sk_dim_tiempo),
@@ -299,6 +299,6 @@ create table if not exists fact_tratamiento
     CONSTRAINT fk_dim_medico FOREIGN KEY (sk_dim_medico) references dim_medico (sk_dim_medico),
     CONSTRAINT fk_dim_paciente FOREIGN KEY (sk_dim_paciente) references dim_paciente (sk_dim_paciente),
     CONSTRAINT fk_dim_fecha_elaboracion FOREIGN KEY (sk_dim_fecha_elaboracion) references dim_tiempo (sk_dim_tiempo)
-    
+
 )
 

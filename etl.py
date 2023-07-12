@@ -1,6 +1,6 @@
 import os
 import psycopg2
-
+import csv
 # Relacional
 source_dbname = os.environ.get('SOURCE_DB_NAME')
 source_user = os.environ.get('SOURCE_DB_USER')
@@ -117,7 +117,23 @@ realiza_results = execute_source_query(query_realiza)
 query_ocupa = "SELECT * FROM OCUPA;"
 ocupa_results = execute_source_query(query_ocupa)
 
-##Extraer datos de archivos extra
+##Extraer datos de archivos csv
+with open('POLIZAS_DE_SEGUROS.csv', 'r') as csv_file_polizas:
+    csv_polizas = csv.reader(csv_file_polizas, delimiter=';')
+
+with open('HISTORIAS_MEDICAS.csv', 'r') as csv_file_historias:
+    csv_historias = csv.reader(csv_file_historias, delimiter=';')
+
+##Estraer datos de TXT
+with open('EPIDEMIOLOGIA.txt', 'r') as txt_file:
+        lines = txt_file.readlines()
+        for line in lines:
+            data = line.split()
+            estado = data[0]
+            cant_hab = data[1]
+            enfermedad = data[2]
+            cant_casos = data[3]
+            sit_actual = data[4]
 
 
 

@@ -906,7 +906,7 @@
     <hop>
       <from>Tabla_Diagnostico</from>
       <to>DIM_Diag</to>
-      <enabled>Y</enabled>
+      <enabled>N</enabled>
     </hop>
     <hop>
       <from>Tabla MEDICAMIENTO</from>
@@ -1196,6 +1196,16 @@
     <hop>
       <from>Block this step until steps finish 4</from>
       <to>Tabla Practica</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Tabla_Diagnostico</from>
+      <to>Select values 7</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Select values 7</from>
+      <to>DIM_Diag</to>
       <enabled>Y</enabled>
     </hop>
   </order>
@@ -1900,11 +1910,11 @@
       </field>
       <field>
         <column_name>descripcion_sexo</column_name>
-        <stream_name>Desc_Sexo</stream_name>
+        <stream_name>descripcion</stream_name>
       </field>
       <field>
         <column_name>descrip_edo_civil</column_name>
-        <stream_name>Desc_edo_civil</stream_name>
+        <stream_name>descripcion_1</stream_name>
       </field>
       <field>
         <column_name>hipertenso</column_name>
@@ -2607,50 +2617,111 @@
     <fields>
       <field>
         <name>ci_pac</name>
+        <rename/>
       </field>
       <field>
         <name>nombre</name>
+        <rename/>
       </field>
       <field>
         <name>apellido</name>
+        <rename/>
       </field>
       <field>
         <name>f_nacimiento</name>
+        <rename/>
       </field>
       <field>
         <name>tipo_sangre</name>
+        <rename/>
       </field>
       <field>
         <name>nacionalidad</name>
+        <rename/>
       </field>
       <field>
         <name>id_estado_civil</name>
+        <rename/>
       </field>
       <field>
         <name>id_sx</name>
+        <rename/>
       </field>
       <field>
         <name>id_ciudad</name>
+        <rename/>
+      </field>
+      <field>
+        <name>id_sx_1</name>
+        <rename/>
       </field>
       <field>
         <name>descripcion</name>
-        <rename>Desc_Sexo</rename>
+        <rename/>
+      </field>
+      <field>
+        <name>id_estado_civil_1</name>
+        <rename/>
       </field>
       <field>
         <name>descripcion_1</name>
-        <rename>Desc_edo_civil</rename>
+        <rename/>
+      </field>
+      <field>
+        <name>NRO</name>
+        <rename/>
+      </field>
+      <field>
+        <name>CEDULA</name>
+        <rename/>
+      </field>
+      <field>
+        <name>EDAD</name>
+        <rename/>
+      </field>
+      <field>
+        <name>PESO ACTUAL</name>
+        <rename/>
+      </field>
+      <field>
+        <name>PESO IDEAL</name>
+        <rename/>
+      </field>
+      <field>
+        <name>TENSION</name>
+        <rename/>
+      </field>
+      <field>
+        <name>TIPO_SANGRE_1</name>
+        <rename/>
+      </field>
+      <field>
+        <name>FUMADOR</name>
+        <rename/>
       </field>
       <field>
         <name>HIPERTENSO</name>
+        <rename/>
       </field>
       <field>
         <name>ARTRITIS</name>
+        <rename/>
       </field>
       <field>
         <name>OSTEOPOROSIS</name>
+        <rename/>
       </field>
       <field>
         <name>DIABETES</name>
+        <rename/>
+      </field>
+      <field>
+        <name>PROB. RESPIRATORIOS</name>
+        <rename/>
+      </field>
+      <field>
+        <name>FECHA</name>
+        <rename/>
       </field>
       <select_unspecified>N</select_unspecified>
       <meta>
@@ -2875,6 +2946,23 @@
         <storage_type/>
       </meta>
       <meta>
+        <name>NRO</name>
+        <rename>NRO</rename>
+        <type>None</type>
+        <length>15</length>
+        <precision>0</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
+      <meta>
         <name>CEDULA</name>
         <rename>CEDULA</rename>
         <type>None</type>
@@ -3064,7 +3152,7 @@
       <meta>
         <name>PROB. RESPIRATORIOS</name>
         <rename>PROB. RESPIRATORIOS</rename>
-        <type>None</type>
+        <type>Boolean</type>
         <length>2</length>
         <precision>-2</precision>
         <conversion_mask/>
@@ -7972,7 +8060,7 @@ FROM "public".diagn
     <return_field/>
     <fields>
       <field>
-        <column_name>id_diagn</column_name>
+        <column_name>id_diagnostico</column_name>
         <stream_name>id_diagn</stream_name>
       </field>
       <field>
@@ -12260,6 +12348,119 @@ FROM "public".practica
     <GUI>
       <xloc>1728</xloc>
       <yloc>1024</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Select values 7</name>
+    <type>SelectValues</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <select_unspecified>N</select_unspecified>
+      <meta>
+        <name>id_diagn</name>
+        <rename>id_diagn</rename>
+        <type>Integer</type>
+        <length>-2</length>
+        <precision>-2</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
+      <meta>
+        <name>tipo</name>
+        <rename>tipo</rename>
+        <type>None</type>
+        <length>500</length>
+        <precision>-2</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
+      <meta>
+        <name>nombre</name>
+        <rename>nombre</rename>
+        <type>None</type>
+        <length>500</length>
+        <precision>-2</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
+      <meta>
+        <name>descripcion</name>
+        <rename>descripcion</rename>
+        <type>None</type>
+        <length>500</length>
+        <precision>-2</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
+      <meta>
+        <name>costo</name>
+        <rename>costo</rename>
+        <type>None</type>
+        <length>-2</length>
+        <precision>-2</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>1296</xloc>
+      <yloc>752</yloc>
       <draw>Y</draw>
     </GUI>
   </step>

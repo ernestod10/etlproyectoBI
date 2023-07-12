@@ -117,22 +117,43 @@ realiza_results = execute_source_query(query_realiza)
 query_ocupa = "SELECT * FROM OCUPA;"
 ocupa_results = execute_source_query(query_ocupa)
 
+##Extraer datos de archivos extra
 
-#ejemplo config Destino
+
+
+##Transformar data
+data_hechos = [(row[0], row[1], row[2]) for row in _results]
+data_lugar = [(row[0], row[1], row[2]) for row in _results]
+
+## Ejemplo para combinar tablas
+joined_results = []
+for prescribe_row in prescribe_results:
+    for practica_row in practica_results:
+        if prescribe_row["id"] == practica_row["id"]:
+            joined_results.append({**prescribe_row, **practica_row})
+
+##ejemplo para filtrar algunas columnas de una tabla
+filtered_results = []
+
+
+#Inserts
 dest_table = 'tabla_hechos'
 query_hechos = "INSERT INTO {dest_table} (column1, column2, column3) VALUES (%s, %s, %s);"
-data_hechos = [(row[0], row[1], row[2]) for row in results]
-
-
-dest_table = 'Dimension_lugar'
-query_lugar = "INSERT INTO {dest_table} (column1, column2, column3) VALUES (%s, %s, %s);"
-data_lugar = [(row[0], row[1], row[2]) for row in results]
-
-
-
-
-#ejemplo Inserts
 execute_dest_query(query_hechos, data_hechos)
+
+
+dest_table = 'DIM_TIPO_SERVICIO'
+query_Dim_Tipo_servicio = "INSERT INTO {dest_table} (COD_TIPO_SERVICIO, DESCRIPCION_TIPO_SERVICIO,) VALUES (%s, %s);"
+execute_dest_query(query_hechos, Data_Dim_Tipo_servicio)
+
+dest_table = 'DIM_POLIZA'
+query_Dim_Tipo_servicio = "INSERT INTO {dest_table} (EMPRESA, TIPO_POLIZA,HOSPITALIZACION,CIRUGIA,MATERNIDAD,RADIOGRAFIAS,EXAMENES,AMBULANCIA,COBERTURA,APROBADA) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s);"
+execute_dest_query(query_hechos, DATA_Poliza)
+
+
+
+
+
 
 source_cur.close()
 source_conn.close()

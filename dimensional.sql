@@ -68,16 +68,7 @@ CREATE TABLE dim_intervencion
 
 
 
-CREATE TABLE dim_medicamento
-(
-    sk_dim_medicamento serial NOT NULL,
-    id_medicina integer NOT NULL,
-    nombre_medicina text,
-    presentacion text,
-    posologia text,
-    efectos_secundarios text,
-    PRIMARY KEY (sk_dim_medicamento)
-);
+
 
 
 
@@ -221,9 +212,19 @@ CREATE TABLE IF NOT EXISTS dim_proveedor
     descrip_tipo text COLLATE pg_catalog."default",
     id_estado integer,
     descrip_estado text COLLATE pg_catalog."default",
-    sk_medicamento integer,
-    CONSTRAINT dim_proveedor_pkey PRIMARY KEY (sk_dim_proveedor),
-    CONSTRAINT sk_medicamento FOREIGN KEY (sk_medicamento) references dim_medicamento (sk_dim_medicamento)
+    CONSTRAINT dim_proveedor_pkey PRIMARY KEY (sk_dim_proveedor)
+);
+CREATE TABLE dim_medicamento
+(
+    sk_dim_medicamento serial NOT NULL,
+    id_medicina integer NOT NULL,
+    nombre_medicina text,
+    presentacion text,
+    posologia text,
+    efectos_secundarios text,
+    id_proveedor integer,
+    PRIMARY KEY (sk_dim_medicamento)
+
 );
 
 ---------------------------------------------------------------------------------------------------------------------------------

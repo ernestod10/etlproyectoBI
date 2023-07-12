@@ -1,3 +1,24 @@
+drop table if exists dim_area cascade;
+drop table if exists dim_diagnostico cascade;
+drop table if exists dim_historia_medica cascade;
+drop table if exists dim_intervencion cascade;
+drop table if exists dim_medicamento cascade;
+drop table if exists dim_medico cascade;
+drop table if exists dim_paciente cascade;
+drop table if exists dim_personal_sanit cascade;
+drop table if exists dim_poliza cascade;
+drop table if exists dim_riesgo cascade;
+drop table if exists dim_tiempo cascade;
+drop table if exists dim_tipo_servicio cascade;
+drop table if exists dim_tratamiento cascade;
+drop table if exists dim_proveedor cascade;
+drop table if exists fact_facturacion cascade;
+drop table if exists fact_hospitalizacion cascade;
+drop table if exists fact_intervencion cascade;
+drop table if exists fact_diagnostico cascade;
+
+
+
 CREATE TABLE dim_area
 (
     sk_dim_area serial NOT NULL,
@@ -231,6 +252,7 @@ CREATE TABLE IF NOT EXISTS fact_facturacion
     cant_dias integer,
     numero_cama integer,
 
+    CONSTRAINT pk_fact_facturacion PRIMARY KEY (SK_Fact_Facturacion),
     CONSTRAINT fk_dim_paciente FOREIGN KEY (sk_dim_paciente) REFERENCES dim_paciente (SK_dim_paciente),
     CONSTRAINT fk_dim_tipo_servicio FOREIGN KEY (sk_dim_tipo_servicio) REFERENCES dim_tipo_servicio (SK_dim_tipo_servicio),
     CONSTRAINT fk_dim_fecha_facturacion FOREIGN KEY (Sk_dim_fecha_facturacion) REFERENCES dim_tiempo (sk_dim_tiempo),

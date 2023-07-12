@@ -9,11 +9,11 @@ source_host = os.environ.get('SOURCE_DB_HOST')
 source_port = os.environ.get('SOURCE_DB_PORT')
 
 # OLAP
-dest_dbname = os.environ.get('DESTINATION_DB_NAME')
-dest_user = os.environ.get('DESTINATION_DB_USER')
-dest_password = os.environ.get('DESTINATION_DB_PASSWORD')
-dest_host = os.environ.get('DESTINATION_DB_HOST')
-dest_port = os.environ.get('DESTINATION_DB_PORT')
+dest_dbname = os.environ.get('DEST_DB_NAME')
+dest_user = os.environ.get('DEST_DB_USER')
+dest_password = os.environ.get('DEST_DB_PASSWORD')
+dest_host = os.environ.get('DEST_DB_HOST')
+dest_port = os.environ.get('DEST_DB_PORT')
 
 source_conn = psycopg2.connect(dbname=source_dbname, user=source_user, password=source_password, host=source_host, port=source_port)
 source_cur = source_conn.cursor()
